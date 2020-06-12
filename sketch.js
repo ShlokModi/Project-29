@@ -11,10 +11,10 @@ function setup() {
   world = engine.world;
   //createSprite(400, 200, 50, 50);
   //polygon holder with slings
-  this.polygon = Bodies.circle(50,200,20);
-  World.add(world,this.polygon);
+  polygon= Matter.Bodies.circle(50, 200, 20);
+  World.add(world,polygon);
 
-  slingShot = new SlingShot(this.polygon,{x:100,y:200});
+  slingShot = new SlingShot(polygon,{x:100,y:200});
   ground1 = new Ground(390,305,240,20);
   //level one
   block1 = new Box(300,275,30,40);
