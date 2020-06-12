@@ -1,13 +1,20 @@
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
+const Constraint = Matter.Constraint;
 var ground1,block1,block2,block3,block4,block5,block6,block7,block8,block9,block10,block11,block12,block13,block14,block15,block16;
+var polygon,slingShot;
 
 function setup() {
   createCanvas(800,400);
   engine = Engine.create();
   world = engine.world;
   //createSprite(400, 200, 50, 50);
+  //polygon holder with slings
+  this.polygon = Bodies.circle(50,200,20);
+  World.add(world,this.polygon);
+
+  slingShot = new SlingShot(this.polygon,{x:100,y:200});
   ground1 = new Ground(390,305,240,20);
   //level one
   block1 = new Box(300,275,30,40);
@@ -29,6 +36,7 @@ function setup() {
   block15 = new Box(420,195,30,40);
   //top
   block16 = new Box(390,155,30,40);
+
 }
 
 function draw() {
@@ -51,5 +59,7 @@ function draw() {
   block15.display();
   block16.display();
   ground1.display();
+  ellipse(50,200,20);
+  slingShot.display();
   drawSprites();
 }
