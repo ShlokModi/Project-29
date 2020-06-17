@@ -3,6 +3,7 @@ const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 var ground1,block1,block2,block3,block4,block5,block6,block7,block8,block9,block10,block11,block12,block13,block14,block15,block16;
+var block17,block18,block19,block20,block21,block22,block23,block24,block25,ground2,ground3;
 var polygon,slingShot;
 
 function setup() {
@@ -11,11 +12,18 @@ function setup() {
   world = engine.world;
   //createSprite(400, 200, 50, 50);
   //polygon holder with slings
-  polygon= Matter.Bodies.circle(50, 200, 20);
+  var options = {
+    'restitution':0.8,
+    'friction':1.0,
+    'density':1.0
+  }
+  polygon= Bodies.circle(50, 200, 20,options);
   World.add(world,polygon);
 
   slingShot = new SlingShot(polygon,{x:100,y:200});
   ground1 = new Ground(390,305,240,20);
+  ground2 = new Ground(690,225,180,20);
+  ground3 = new Ground(400,380,800,40);
   //level one
   block1 = new Box(300,275,30,40);
   block2 = new Box(330,275,30,40);
@@ -37,10 +45,19 @@ function setup() {
   //top
   block16 = new Box(390,155,30,40);
 
+  block17 = new Box(690,195,30,40);
+  block18 = new Box(720,195,30,40);
+  block19 = new Box(750,195,30,40);
+  block20 = new Box(660,195,30,40);
+  block21 = new Box(630,195,30,40);
+  block22 = new Box(690,155,30,40);
+  block23 = new Box(660,155,30,40);
+  block24 = new Box(720,155,30,40);
+  block25 = new Box(690,115,30,40);
 }
 
 function draw() {
-  background(255,255,255);  
+  background(0, 0, 0);  
   Engine.update(engine);
   block1.display();
   block2.display();
@@ -58,8 +75,29 @@ function draw() {
   block14.display();
   block15.display();
   block16.display();
+  block17.display();
+  block18.display();
+  block19.display();
+  block20.display();
+  block21.display();
+  block22.display();
+  block23.display();
+  block24.display();
+  block25.display();
   ground1.display();
-  ellipse(50,200,20);
+  ground2.display();
+  ground3.display();
+  //console.log(polygon);
+  ellipseMode(RADIUS);
+  ellipse(polygon.position.x,polygon.position.y,20,20);
   slingShot.display();
   drawSprites();
+}
+function mouseDragged(){
+    Matter.Body.setPosition(polygon, {x: mouseX , y: mouseY});
+}
+
+
+function mouseReleased(){
+    slingShot.fly();
 }
