@@ -4,8 +4,11 @@ const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 var ground1,block1,block2,block3,block4,block5,block6,block7,block8,block9,block10,block11,block12,block13,block14,block15,block16;
 var block17,block18,block19,block20,block21,block22,block23,block24,block25,ground2,ground3;
-var polygon,slingShot;
-
+var polygon,slingShot, backgroundImg, bg;
+function preload()
+{
+	polygon_img = loadImage("regular-hexagon.jpg");
+}
 function setup() {
   createCanvas(800,400);
   engine = Engine.create();
@@ -57,8 +60,9 @@ function setup() {
 }
 
 function draw() {
-  background(0, 0, 0);  
+  background(0,0,0);
   Engine.update(engine);
+  fill(color(255, 0, 255));
   block1.display();
   block2.display();
   block3.display();
@@ -66,36 +70,42 @@ function draw() {
   block5.display();
   block6.display();
   block7.display();
+  fill(color(0, 0, 255));
   block8.display();
   block9.display();
   block10.display();
   block11.display();
   block12.display();
+  fill(color(255,0,0));
   block13.display();
   block14.display();
   block15.display();
+  fill(color(255,255,0));
   block16.display();
+  fill(color(0,0,255));
   block17.display();
   block18.display();
   block19.display();
   block20.display();
   block21.display();
+  fill(color(255,0,0));
   block22.display();
   block23.display();
   block24.display();
+  fill(color(255,255,0));
   block25.display();
   ground1.display();
   ground2.display();
   ground3.display();
   //console.log(polygon);
-  ellipseMode(RADIUS);
-  ellipse(polygon.position.x,polygon.position.y,20,20);
+  imageMode(CENTER);
+  image(polygon_img, polygon.position.x, polygon.position.y,40,40);
   slingShot.display();
   drawSprites();
 }
 function mouseDragged(){
-    Matter.Body.setPosition(polygon, {x: mouseX , y: mouseY});
-}
+        Matter.Body.setPosition(polygon, {x: mouseX , y: mouseY});
+    }
 
 
 function mouseReleased(){
